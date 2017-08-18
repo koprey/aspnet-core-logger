@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koprey.Extensions.Logging.SqlServer", "src\Koprey.Extensions.Logging.SqlServer\Koprey.Extensions.Logging.SqlServer.csproj", "{2B651F43-2D5C-408C-99AA-0522170581F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koprey.Extensions.Logging.Email", "src\Koprey.Extensions.Logging.Email\Koprey.Extensions.Logging.Email.csproj", "{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B5580AE0-9231-44C3-8B3A-989F1F1B6C5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B651F43-2D5C-408C-99AA-0522170581F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B651F43-2D5C-408C-99AA-0522170581F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B651F43-2D5C-408C-99AA-0522170581F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B651F43-2D5C-408C-99AA-0522170581F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7654F69-1E00-4DD7-ACC6-3CE76B5C0FA0}
+	EndGlobalSection
+EndGlobal
