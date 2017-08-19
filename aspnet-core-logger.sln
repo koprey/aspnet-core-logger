@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koprey.Extensions.Logging.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koprey.Extensions.Logging.Email", "src\Koprey.Extensions.Logging.Email\Koprey.Extensions.Logging.Email.csproj", "{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B5580AE0-9231-44C3-8B3A-989F1F1B6C5A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B5580AE0-9231-44C3-8B3A-989F1F1B6C5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{3CEE945D-AC1E-48C6-8099-0612B8B284A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koprey.Extensions.Logging.Test", "test\Koprey.Extensions.Logging.Test\Koprey.Extensions.Logging.Test.csproj", "{1450469C-7FB8-40FC-8817-8692DE2F25F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "samples\SampleApp\SampleApp.csproj", "{7EF50DAC-2221-4CE0-909D-A37C2FDFC9A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +29,21 @@ Global
 		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9110AA8-3950-45BE-BEB1-C8923A5C13DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1450469C-7FB8-40FC-8817-8692DE2F25F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1450469C-7FB8-40FC-8817-8692DE2F25F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1450469C-7FB8-40FC-8817-8692DE2F25F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1450469C-7FB8-40FC-8817-8692DE2F25F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EF50DAC-2221-4CE0-909D-A37C2FDFC9A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EF50DAC-2221-4CE0-909D-A37C2FDFC9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EF50DAC-2221-4CE0-909D-A37C2FDFC9A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EF50DAC-2221-4CE0-909D-A37C2FDFC9A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1450469C-7FB8-40FC-8817-8692DE2F25F9} = {B5580AE0-9231-44C3-8B3A-989F1F1B6C5A}
+		{7EF50DAC-2221-4CE0-909D-A37C2FDFC9A6} = {3CEE945D-AC1E-48C6-8099-0612B8B284A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D7654F69-1E00-4DD7-ACC6-3CE76B5C0FA0}
