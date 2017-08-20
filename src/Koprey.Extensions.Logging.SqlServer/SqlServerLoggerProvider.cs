@@ -1,10 +1,8 @@
 ﻿using Koprey.Extensions.Logging.SqlServer.Internal;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Koprey.Extensions.Logging.SqlServer
 {
@@ -21,25 +19,7 @@ namespace Koprey.Extensions.Logging.SqlServer
         private static readonly Func<string, LogLevel, bool> falseFilter = (cat, level) => false;
         private IDisposable _optionsReloadToken;
         private bool _includeScopes;
-
-        public SqlServerLoggerProvider(Func<string, LogLevel, bool> filter, bool includeScopes)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            _filter = filter;
-            _includeScopes = includeScopes;
-        }
-
-        public SqlServerLoggerProvider(IOptionsMonitor<SqlServerLoggerOptions> options)
-        {
-            // Filter would be applied on LoggerFactory level
-            _filter = trueFilter;
-            _optionsReloadToken = options.OnChange(ReloadLoggerOptions);
-            ReloadLoggerOptions(options.CurrentValue);
-        }
+        
 
         private void ReloadLoggerOptions(SqlServerLoggerOptions options)
         {

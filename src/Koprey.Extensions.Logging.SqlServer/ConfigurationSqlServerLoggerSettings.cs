@@ -15,6 +15,14 @@ namespace Koprey.Extensions.Logging.SqlServer
             ChangeToken = configuration.GetReloadToken();
         }
 
+        public string ConnectionString
+        {
+            get
+            {
+                return _configuration["ConnectionString"];
+            }
+        }
+
         public IChangeToken ChangeToken { get; private set; }
 
         public bool IncludeScopes

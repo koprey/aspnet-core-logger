@@ -5,6 +5,8 @@ namespace Koprey.Extensions.Logging.SqlServer
 {
     public interface ISqlServerLoggerSettings
     {
+        string ConnectionString { get; }
+
         bool IncludeScopes { get; }
 
         IChangeToken ChangeToken { get; }

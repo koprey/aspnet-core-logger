@@ -2,12 +2,12 @@
 
 namespace Koprey.Extensions.Logging.SqlServer.Internal
 {
-    public struct LogMessageEntry
+    public class LogMessageEntry
     {
-        public string LevelString;
-        public string Application;
-        public string Event;
-        public string Message;
-        public DateTime Timestamp;
+        public string LevelString { get; set; }
+        public string Application { get; set; }
+        public string Event { get; set; }
+        public string Message { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

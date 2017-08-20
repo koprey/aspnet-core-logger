@@ -172,23 +172,7 @@ namespace Koprey.Extensions.Logging.SqlServer
 
         private static string GetLogLevelString(LogLevel logLevel)
         {
-            switch (logLevel)
-            {
-                case LogLevel.Trace:
-                    return "trce";
-                case LogLevel.Debug:
-                    return "dbug";
-                case LogLevel.Information:
-                    return "info";
-                case LogLevel.Warning:
-                    return "warn";
-                case LogLevel.Error:
-                    return "fail";
-                case LogLevel.Critical:
-                    return "crit";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(logLevel));
-            }
+            return logLevel.ToString();
         }
         
 
