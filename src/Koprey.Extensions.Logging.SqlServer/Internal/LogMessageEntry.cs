@@ -9,5 +9,6 @@ namespace Koprey.Extensions.Logging.SqlServer.Internal
         public string Event { get; set; }
         public string Message { get; set; }
         public DateTime Timestamp { get; set; }
+        public string Exception { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Koprey.Extensions.Logging.SqlServer.Internal;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ namespace Koprey.Extensions.Logging.SqlServer
     [ProviderAlias("SqlServer")]
     public class SqlServerLoggerProvider : ILoggerProvider
     {
-        private readonly ConcurrentDictionary<string, SqlServerLogger> _loggers = new ConcurrentDictionary<string, SqlServerLogger>();
+        private readonly ConcurrentDictionary<string, SqlServerLogger> _loggers = 
+            new ConcurrentDictionary<string, SqlServerLogger>();
 
         private readonly Func<string, LogLevel, bool> _filter;
         private ISqlServerLoggerSettings _settings;
@@ -28,6 +30,14 @@ namespace Koprey.Extensions.Logging.SqlServer
             {
                 logger.IncludeScopes = _includeScopes;
             }
+        }
+
+        public SqlServerLoggerProvider(IOptionsMonitor<SqlServerLoggerOptions> options)
+        {
+            // Filter would be applied on LoggerFactory level
+            _filter = trueFilter;
+            _optionsReloadToken = options.OnChange(ReloadLoggerOptions);
+            ReloadLoggerOptions(options.CurrentValue);
         }
 
         public SqlServerLoggerProvider(ISqlServerLoggerSettings settings)

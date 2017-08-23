@@ -39,10 +39,10 @@ namespace Koprey.Extensions.Logging.SqlServer.Internal
         // for testing
         internal virtual void WriteMessage(LogMessageEntry message)
         {
-            //if (message.LevelString != null)
-            //{
-            //    SqlServer.Write(message.LevelString, message.LevelBackground, message.LevelForeground);
-            //}
+            if (message.LevelString != null)
+            {
+                //SqlServer.Write(message.LevelString, message.LevelBackground, message.LevelForeground);
+            }
 
             //SqlServer.Write(message.Message, message.MessageColor, message.MessageColor);
             //SqlServer.Flush();

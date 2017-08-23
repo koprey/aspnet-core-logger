@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Koprey.Extensions.Logging.SqlServer
@@ -10,12 +11,14 @@ namespace Koprey.Extensions.Logging.SqlServer
         /// </summary>
         /// <param name="builder">The <see cref="ILoggingBuilder"/> to use.</param>
         /// <param name="configuration">The <see cref="IConfiguration"/> to use for <see cref="LoggingContext"/>.</param>
-        public static ILoggingBuilder AddSqlServer(this ILoggingBuilder builder, IConfiguration configuration)
+        public static ILoggingBuilder AddSqlServer(this ILoggingBuilder builder/*, IConfiguration configuration*/)
         {
             //builder.Services.AddDbContext<LoggingContext>(options => options.UseSqlServer(configuration["ConnectionString"]));
-            //builder.Services.AddSingleton<ILoggerProvider, SqlServerLoggerProvider>();
-            var settings = new ConfigurationSqlServerLoggerSettings(configuration);
-            builder.AddProvider(new SqlServerLoggerProvider(settings));
+           
+            builder.Services.AddSingleton<ILoggerProvider, SqlServerLoggerProvider>();
+            
+            //var settings = new ConfigurationSqlServerLoggerSettings(configuration);
+            //builder.AddProvider(new SqlServerLoggerProvider(settings));
 
             return builder;
         }               
