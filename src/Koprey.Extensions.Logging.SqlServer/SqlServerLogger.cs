@@ -15,10 +15,10 @@ namespace Koprey.Extensions.Logging.SqlServer
             var logLevelString = GetLogLevelString(LogLevel.Information);
         }
 
-        public SqlServerLogger(string name, Func<string, LogLevel, bool> filter, bool includeScopes)
-            : this(name, filter, includeScopes, new SqlServerLoggerProcessor())
-        {
-        }
+        //public SqlServerLogger(string name, Func<string, LogLevel, bool> filter, bool includeScopes)
+        //    : this(name, filter, includeScopes, new SqlServerLoggerProcessor())
+        //{
+        //}
 
         internal SqlServerLogger(string name, Func<string, LogLevel, bool> filter, bool includeScopes, SqlServerLoggerProcessor loggerProcessor)
         {

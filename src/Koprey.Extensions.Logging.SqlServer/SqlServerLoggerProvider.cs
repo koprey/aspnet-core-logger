@@ -15,11 +15,10 @@ namespace Koprey.Extensions.Logging.SqlServer
 
         private readonly Func<string, LogLevel, bool> _filter;
         private ISqlServerLoggerSettings _settings;
-        private readonly SqlServerLoggerProcessor _messageQueue = new SqlServerLoggerProcessor();
+        private readonly SqlServerLoggerProcessor _messageQueue;
 
         private static readonly Func<string, LogLevel, bool> trueFilter = (cat, level) => true;
         private static readonly Func<string, LogLevel, bool> falseFilter = (cat, level) => false;
-        private IDisposable _optionsReloadToken;
         private bool _includeScopes;
         
 
@@ -30,15 +29,7 @@ namespace Koprey.Extensions.Logging.SqlServer
             {
                 logger.IncludeScopes = _includeScopes;
             }
-        }
-
-        public SqlServerLoggerProvider(IOptionsMonitor<SqlServerLoggerOptions> options)
-        {
-            // Filter would be applied on LoggerFactory level
-            _filter = trueFilter;
-            _optionsReloadToken = options.OnChange(ReloadLoggerOptions);
-            ReloadLoggerOptions(options.CurrentValue);
-        }
+        }       
 
         public SqlServerLoggerProvider(ISqlServerLoggerSettings settings)
         {
@@ -48,6 +39,7 @@ namespace Koprey.Extensions.Logging.SqlServer
             }
 
             _settings = settings;
+            _messageQueue = new SqlServerLoggerProcessor(settings);
 
             if (_settings.ChangeToken != null)
             {
@@ -134,7 +126,6 @@ namespace Koprey.Extensions.Logging.SqlServer
 
         public void Dispose()
         {
-            _optionsReloadToken?.Dispose();
             _messageQueue.Dispose();
         }
     }

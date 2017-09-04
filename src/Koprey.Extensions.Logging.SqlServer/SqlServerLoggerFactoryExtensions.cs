@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Koprey.Extensions.Logging.SqlServer.Internal;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Koprey.Extensions.Logging.SqlServer
 {
@@ -10,18 +13,18 @@ namespace Koprey.Extensions.Logging.SqlServer
         /// Adds a SqlServer logger named 'SqlServer' to the factory.
         /// </summary>
         /// <param name="builder">The <see cref="ILoggingBuilder"/> to use.</param>
-        /// <param name="configuration">The <see cref="IConfiguration"/> to use for <see cref="LoggingContext"/>.</param>
-        public static ILoggingBuilder AddSqlServer(this ILoggingBuilder builder/*, IConfiguration configuration*/)
+        /// <param name="configuration">The <see cref="IConfiguration"/> to use for <see cref="LoggingDBContext"/>.</param>
+        public static ILoggingBuilder AddSqlServer(this ILoggingBuilder builder, IConfiguration configuration)
         {
-            //builder.Services.AddDbContext<LoggingContext>(options => options.UseSqlServer(configuration["ConnectionString"]));
-           
-            builder.Services.AddSingleton<ILoggerProvider, SqlServerLoggerProvider>();
+            var settings = new ConfigurationSqlServerLoggerSettings(configuration.GetSection("Logging"));
+            //builder.Services.AddDbContext<LoggingDBContext>(o=>o.UseSqlServer(settings.ConnectionString));
+            //builder.Services.AddScoped<LoggingDBContext>();
+            //builder.Services.AddSingleton<ILoggerProvider, SqlServerLoggerProvider>();
             
-            //var settings = new ConfigurationSqlServerLoggerSettings(configuration);
-            //builder.AddProvider(new SqlServerLoggerProvider(settings));
+            builder.AddProvider(new SqlServerLoggerProvider(settings));
 
             return builder;
-        }               
+        }
 
 
         /// <summary>
@@ -32,7 +35,7 @@ namespace Koprey.Extensions.Logging.SqlServer
         public static ILoggerFactory AddSqlServer(
             this ILoggerFactory factory,
             ISqlServerLoggerSettings settings)
-        {            
+        {
             factory.AddProvider(new SqlServerLoggerProvider(settings));
             return factory;
         }

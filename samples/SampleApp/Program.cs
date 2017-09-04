@@ -1,4 +1,5 @@
 ﻿using Koprey.Extensions.Logging.SqlServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,7 +12,7 @@ namespace SampleApp
     public class Program
     {
         private readonly ILogger _logger;
-
+        
         public Program()
         {
             var loggingConfiguration = new ConfigurationBuilder()
@@ -24,14 +25,13 @@ namespace SampleApp
             var serviceCollection = new ServiceCollection()
                 .AddLogging(builder =>
                 {
-                    builder
-                    .AddConfiguration(loggingConfiguration.GetSection("Logging"))
+                    builder.AddConfiguration(loggingConfiguration.GetSection("Logging"))
                         .AddFilter("Microsoft", LogLevel.Warning)
                         .AddFilter("System", LogLevel.Warning)
                         .AddFilter("SampleApp.Program", LogLevel.Debug)
-                        .AddSqlServer();
+                        .AddSqlServer(loggingConfiguration);
                 });
-
+            
             // providers may be added to a LoggerFactory before any loggers are created
             var serviceProvider = serviceCollection.BuildServiceProvider();
             // getting the logger using the class's name is conventional

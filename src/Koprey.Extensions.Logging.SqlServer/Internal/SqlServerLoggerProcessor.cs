@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
@@ -8,11 +9,18 @@ namespace Koprey.Extensions.Logging.SqlServer.Internal
     {
         private const int _maxQueuedMessages = 1024;
 
-        private readonly BlockingCollection<LogMessageEntry> _messageQueue = new BlockingCollection<LogMessageEntry>(_maxQueuedMessages);
+        private readonly BlockingCollection<LogMessageEntry> _messageQueue = 
+                                        new BlockingCollection<LogMessageEntry>(_maxQueuedMessages);
         private readonly Task _outputTask;
 
-        public SqlServerLoggerProcessor()
+        private readonly LoggingDBContext _db;
+
+        public SqlServerLoggerProcessor(ISqlServerLoggerSettings settings)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<LoggingDBContext>();
+            optionsBuilder.UseSqlServer(settings.ConnectionString);
+            _db = new LoggingDBContext(optionsBuilder.Options);
+
             // Start SqlServer message queue processor
             _outputTask = Task.Factory.StartNew(
                 ProcessLogQueue,
@@ -42,10 +50,13 @@ namespace Koprey.Extensions.Logging.SqlServer.Internal
             if (message.LevelString != null)
             {
                 //SqlServer.Write(message.LevelString, message.LevelBackground, message.LevelForeground);
+                _db.LogMessageEntries.Add(message);
+                
             }
 
             //SqlServer.Write(message.Message, message.MessageColor, message.MessageColor);
             //SqlServer.Flush();
+            _db.SaveChanges();
         }
 
         private void ProcessLogQueue()

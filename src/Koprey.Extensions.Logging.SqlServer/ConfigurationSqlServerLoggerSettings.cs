@@ -19,7 +19,7 @@ namespace Koprey.Extensions.Logging.SqlServer
         {
             get
             {
-                return _configuration["ConnectionString"];
+                return _configuration["SqlServer:ConnectionString"];
             }
         }
 
