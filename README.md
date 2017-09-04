@@ -14,7 +14,7 @@ Extension to ASP.NET Core Microsoft Extension Logging
       "Microsoft": "Information"
     },
     "SqlServer": {
-      "ConnectionString": "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Projects\\aspnet-core-logger\\samples\\SampleApp\\Data\\sampleapp-db.mdf;Integrated Security=True;Connect Timeout=30"
+      "ConnectionString": "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\\Data\\sampleapp-db.mdf;Integrated Security=True;Connect Timeout=30"
     }
   }
 ```
